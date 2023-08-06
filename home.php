@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +15,7 @@
         <div class="logo"> <img src='NIST.png'> </div> <h5></h5>
         <div class="menu">
             <div class="background background--light">
+                <form method="post">
                 <button class="logoutButton logoutButton--dark">
                   <svg class="doorway" viewBox="0 0 100 100">
                     <path d="M93.4 86.3H58.6c-1.9 0-3.4-1.5-3.4-3.4V17.1c0-1.9 1.5-3.4 3.4-3.4h34.8c1.9 0 3.4 1.5 3.4 3.4v65.8c0 1.9-1.5 3.4-3.4 3.4z" />
@@ -42,6 +47,7 @@
                   </svg>
                   <span class="button-text">Log Out</span>
                 </button>
+                </form>
               </div>
               
         </div>
@@ -69,7 +75,9 @@
                     <tr>
                         <th>S No.</th>
                         <th>Name</th>
+                        <th>Phone</th>
                         <th>E-mail</th>
+                        <th>Address</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -77,10 +85,11 @@
                     <tr>
                         <td>01</td>
                         <td>Lallon</td>
+                        <td>9888888888</td>
                         <td>Lallon23@gmail.com</td>
+                        <td>lazimpat</td>
                         <td>
-                            <button><ion-icon name="folder-open-outline"></ion-icon></button>
-                            <button><ion-icon name="create-outline"></ion-icon></button>
+                            <a href=""><button><ion-icon name="create-outline"></ion-icon></button></a>
                             <button><ion-icon name="trash-outline"></ion-icon></button>
                         </td>
                     </tr>
@@ -89,10 +98,11 @@
                     <tr>
                         <td>02</td>
                         <td>Modon</td>
+                        <td>9888888888</td>
                         <td>Modon@gmail.com</td>
+                        <td>lazimpat</td>
                         <td>
-                            <button><ion-icon name="folder-open-outline"></ion-icon></button>
-                            <button><ion-icon name="create-outline"></ion-icon></button>
+                        <a href=""><button><ion-icon name="create-outline"></ion-icon></button></a>
                             <button><ion-icon name="trash-outline"></ion-icon></button>
                         </td>
                     </tr>
@@ -101,10 +111,11 @@
                     <tr>
                         <td>03</td>
                         <td>shila</td>
+                        <td>9888888888</td>
                         <td>shila16@gmail.com</td>
+                        <td>lazimpat</td>
                         <td>
-                            <button><ion-icon name="folder-open-outline"></ion-icon></button>
-                            <button><ion-icon name="create-outline"></ion-icon></button>
+                        <a href=""><button><ion-icon name="create-outline"></ion-icon></button></a>
                             <button><ion-icon name="trash-outline"></ion-icon></button>
                         </td>
                     </tr>
@@ -113,10 +124,11 @@
                     <tr>
                         <td>04</td>
                         <td>Shanti</td>
+                        <td>9888888888</td>
                         <td>Omshanti@gmail.com</td>
+                        <td>lazimpat</td>
                         <td>
-                            <button><ion-icon name="folder-open-outline"></ion-icon></button>
-                            <button><ion-icon name="create-outline"></ion-icon></button>
+                        <a href=""><button><ion-icon name="create-outline"></ion-icon></button></a>
                             <button><ion-icon name="trash-outline"></ion-icon></button>
                         </td>
                     </tr>
@@ -134,8 +146,8 @@
 </html>
 
 <?php 
-
-$email;
-$password;
-session_abort();
+    if($_SERVER['REQUEST_METHOD']=="POST") {
+        session_destroy();
+        header("Location: login.php");
+    }
 ?>

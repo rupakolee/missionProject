@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 ?>
 
@@ -38,6 +37,8 @@ session_start();
                     
                     <?php 
                         if ($email == "deepaksir@gmail.com" || $email == "deepak123") {
+                            $_SESSION['username'] = $_POST['email'];
+                            $_SESSION['password'] = $_POST['password'];
                             if ($password == "deepak123") {
                                 header("Location: home.php");
                             }
