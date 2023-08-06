@@ -272,6 +272,10 @@ button{
     color: black;  
     width: 15%;
 }
+.search_bar ion-icon:active {
+    background-color: rgb(240, 240, 240);
+    color: rgb(140, 140, 140);
+}
 .search_bar:hover input{
     width: 300px;
 }
@@ -331,4 +335,9 @@ th,td{
 }
 ion-icon{
     padding: 10px 20px;
+}
+ion-icon:hover {
+  background-color: rgb(185, 185, 185);
+  transition: 0.3s ease-in-out;
+  border-radius: 4px;
 }

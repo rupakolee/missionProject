@@ -62,7 +62,7 @@
                 
             </div>
         </div>
-        <button class="add_new">Add New <b>+</b></button>
+        <a href="add.php"><button class="add_new">Add New <b>+</b></button></a>
         <div class="table_section">
             <table>
                 <thead>
@@ -132,3 +132,10 @@
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
+
+<?php 
+
+$email;
+$password;
+session_abort();
+?>
