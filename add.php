@@ -1,69 +1,177 @@
 <?php
-$errors[]="";
-$name="";
-$address="";
-$email="";
-$phone="";
+
 require 'includes/database.php';
+$name='';
+$email='';
+$phone='';
+$address='';
 
 if ($_SERVER['REQUEST_METHOD']=="POST") {
-    $conn = getDb();
-    $name=$_POST['name'];
-    $address=$_POST['address']; 
-    $email=$_POST['email'];
-    $phone=$_POST['phone'];   
+    
+    $name = filter_input(INPUT_POST, "name", FILTER_VALIDATE_INT);
+    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+    $phone = filter_input(INPUT_POST, "phone", FILTER_SANITIZE_STRING);
+    $address = filter_input(INPUT_POST, "address", FILTER_SANITIZE_NUMBER_INT);
 
-    $sql = "INSERT INTO contacts (name, address, phone, email)
-    VALUES (?,?,?,?)";
+    $nameErr='';
+    $phoneErr='';
 
-    $stmt = mysqli_prepare($conn, $sql);
-    if ($stmt==false) {
-        echo mysqli_error($conn);
+    if (empty($name)) {
+        $nameErr = "Please enter name!";
     }
-    else {
-        mysqli_stmt_bind_param($stmt, "ssss", $name, $address, $phone, $email);
-        if (mysqli_stmt_execute($stmt)) {
-           echo "New contact successfully added.";
+    if(empty($phone)){
+        $phoneErr = "Please enter Phone number!";
+        if(!is_numeric($phone)) {
+            $phoneErr = "Phone number must be numeric!";
         }
     }
 
-    if (empty($name)) {
-        $errors[] = "Please enter your name!";
+    if (empty($nameErr) && empty($phoneErr)) {
+    $conn = getDb();
+
+    $sql = "INSERT INTO contacts (name, email, phone, address)
+    VALUES (?,?,?,?)";
+
+    $stmt = mysqli_prepare($conn, $sql);
+
+    if($stmt==false) {
+        echo mysqli_error($conn);
     }
-    if (empty($address)) {
-        $errors[] = "Please enter your address!";
+    else {
+        mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $phone, $address);
+        if(mysqli_stmt_execute($stmt)){
+            echo "Contact added successfully";
+        }
     }
-    if (empty($phone)) {
-        $errors[] = "Please enter your phone number!";
-    }
-    if (empty($email)) {
-        $errors[] = "Please enter your email!";
-    }
+
 }
-
-
+}
+    
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add new contact</title>
+    <title>Add contact</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .add-container {
+            width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+        }
+        button {
+            cursor: pointer;
+
+        }
+        ion-icon{
+            cursor: pointer;
+            padding: 5px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+        }
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            resize: none;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #66cc66;
+            color: #ffffff;
+        }
+        .button-save {
+            cursor: pointer;
+            background-color: #54cb3f;
+            color: #ffffff;
+        }
+        .button-cancel {
+            cursor: pointer;
+            background-color: #ea0e0e;
+            color: #ffffff;
+        }
+        .required::before {
+            content: '* ';
+            color: red;
+        }
+        .error {
+            color: red;
+            font-style: italic;
+            font-size: 12px;
+        }
+      
+    </style>
 </head>
 <body>
-    <h2>Add new contact</h2>
-    <form method="post">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name"><br>
-        <label for="address">Address</label>
-        <input type="text" name="address" id="address"><br>
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email"><br>
-        <label for="phone">Phone</label>
-        <input type="text" name="phone" id="phone"><br>
-        <input type="submit" name="submit" value="Add">
-        <button>Cancel</button>
-    </form>
+    <div class="add-container">
+        <a href="home.php"><button type=back><ion-icon name="arrow-back-outline"></ion-icon></button></a>
+        <h1>Add Contact</h1>
+        <form method="POST">
+            
+            <div class="form-group">
+                <label for="name" class="required">Name:</label>
+                <?php if(!empty($nameErr) || !empty($phoneErr)): ?>
+                <p class="error"><?= $nameErr ?></p>
+                <?php endif; ?>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="number" class="required">Phone:</label>
+                <?php if(!empty($nameErr) || !empty($phoneErr)): ?>
+                <p class="error"><?= $phoneErr ?></p>
+                <?php endif; ?>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address"></textarea>
+            </div>
+            <div class="button-container">
+                <button class="button button-save" type="submit">Save</button>
+                <button class="button button-cancel" type="button" onclick="window.location.href='home.php'">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
+
+

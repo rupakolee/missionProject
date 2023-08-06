@@ -306,11 +306,11 @@ input{
     position: relative;
     left: 1400px;   
     transition: 0.4s;
+    border: none;
 }
 .add_new:hover{
    background-color: white;
    color: #0298cf;
-   border: 2px solid #0298cf;
 }
 .table_section{
     height: 650px;
