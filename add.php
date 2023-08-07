@@ -7,11 +7,10 @@ $phone='';
 $address='';
 
 if ($_SERVER['REQUEST_METHOD']=="POST") {
-    
-    $name = filter_input(INPUT_POST, "name", FILTER_VALIDATE_INT);
+    $name = $_POST['name'];
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
     $phone = filter_input(INPUT_POST, "phone", FILTER_SANITIZE_STRING);
-    $address = filter_input(INPUT_POST, "address", FILTER_SANITIZE_NUMBER_INT);
+    $address = $_POST['address'];
 
     $nameErr='';
     $phoneErr='';
@@ -39,9 +38,6 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
     }
     else {
         mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $phone, $address);
-        if(mysqli_stmt_execute($stmt)){
-            echo "Contact added successfully";
-        }
     }
 
 }
@@ -132,6 +128,10 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
             font-style: italic;
             font-size: 12px;
         }
+        h5 {
+            text-align: center;
+            color:#66cc66;
+        }
       
     </style>
 </head>
@@ -167,6 +167,13 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
                 <button class="button button-save" type="submit">Save</button>
                 <button class="button button-cancel" type="button" onclick="window.location.href='home.php'">Cancel</button>
             </div>
+            <h5><?php 
+            if ($_SERVER['REQUEST_METHOD']=="POST") {
+                if(mysqli_stmt_execute($stmt)){
+                    echo "Contact added successfully!";
+                }
+        }
+        ?></h5>
         </form>
     </div>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

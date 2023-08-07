@@ -79,9 +79,26 @@ session_start();
         <a href="add.php"><button class="add_new">Add New <b>+</b></button></a>
         <div class="table_section">
             <table>
+
+            <?php 
+                require 'includes/database.php';
+
+                
+                    $conn = getDb();
+                    $sql = "SELECT * FROM contacts";
+
+                    $results = mysqli_query($conn, $sql);
+                    if($results==false) {
+                        echo mysqli_error($conn);
+                    }
+                    else {
+                        $contacts = mysqli_fetch_all($results, MYSQLI_ASSOC);
+                    }
+                
+            ?>
                 <thead>
                     <tr>
-                        <th>S No.</th>
+                        <th>S.N</th>
                         <th>Name</th>
                         <th>Phone</th>
                         <th>E-mail</th>
@@ -90,56 +107,19 @@ session_start();
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($contacts as $contact): ?>
                     <tr>
-                        <td>01</td>
-                        <td>Lallon</td>
-                        <td>9888888888</td>
-                        <td>Lallon23@gmail.com</td>
-                        <td>lazimpat</td>
+                        <td><?= $contact['id']; ?></td>
+                        <td><?= $contact['name']; ?></td>
+                        <td><?= $contact['phone']; ?></td>
+                        <td><?= $contact['email']; ?></td>
+                        <td><?= $contact['address']; ?></td>
                         <td>
                             <a href=""><button><ion-icon name="create-outline"></ion-icon></button></a>
                             <button><ion-icon name="trash-outline"></ion-icon></button>
                         </td>
                     </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>02</td>
-                        <td>Modon</td>
-                        <td>9888888888</td>
-                        <td>Modon@gmail.com</td>
-                        <td>lazimpat</td>
-                        <td>
-                        <a href=""><button><ion-icon name="create-outline"></ion-icon></button></a>
-                            <button><ion-icon name="trash-outline"></ion-icon></button>
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>03</td>
-                        <td>shila</td>
-                        <td>9888888888</td>
-                        <td>shila16@gmail.com</td>
-                        <td>lazimpat</td>
-                        <td>
-                        <a href=""><button><ion-icon name="create-outline"></ion-icon></button></a>
-                            <button><ion-icon name="trash-outline"></ion-icon></button>
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>04</td>
-                        <td>Shanti</td>
-                        <td>9888888888</td>
-                        <td>Omshanti@gmail.com</td>
-                        <td>lazimpat</td>
-                        <td>
-                        <a href=""><button><ion-icon name="create-outline"></ion-icon></button></a>
-                            <button><ion-icon name="trash-outline"></ion-icon></button>
-                        </td>
-                    </tr>
+                    <?php endforeach; ?>
                 </tbody>
             
             </table>
