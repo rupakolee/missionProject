@@ -9,7 +9,7 @@ function getDb() {
     
     $conn=mysqli_connect($db_host,$db_user,$db_password,$db_name); 
     if($conn){
-        echo "PS:- You're connected to database.<br>";
+        // echo "PS:- You're connected to database.<br>";
         return $conn;
     }
 

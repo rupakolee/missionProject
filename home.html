@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +11,7 @@ session_start();
         <div class="logo"> <img src='NIST.png'> </div> <h5></h5>
         <div class="menu">
             <div class="background background--light">
-                <form method="post">
-                <button class="logoutButton logoutButton--dark" type="submit">
+                <button class="logoutButton logoutButton--dark">
                   <svg class="doorway" viewBox="0 0 100 100">
                     <path d="M93.4 86.3H58.6c-1.9 0-3.4-1.5-3.4-3.4V17.1c0-1.9 1.5-3.4 3.4-3.4h34.8c1.9 0 3.4 1.5 3.4 3.4v65.8c0 1.9-1.5 3.4-3.4 3.4z" />
                     <path class="bang" d="M40.5 43.7L26.6 31.4l-2.5 6.7zM41.9 50.4l-19.5-4-1.4 6.3zM40 57.4l-17.7 3.9 3.9 5.7z" />
@@ -47,15 +42,6 @@ session_start();
                   </svg>
                   <span class="button-text">Log Out</span>
                 </button>
-                </form>
-                
-<?php 
-    if($_SERVER['REQUEST_METHOD']=="POST") {
-        session_destroy();
-        header("Location: login.php");
-        
-    }
-?>
               </div>
               
         </div>
@@ -76,48 +62,64 @@ session_start();
                 
             </div>
         </div>
-        <a href="add.php"><button class="add_new">Add New <b>+</b></button></a>
+        <button class="add_new">Add New <b>+</b></button>
         <div class="table_section">
             <table>
-
-            <?php 
-                require 'includes/database.php';
-
-                    $conn = getDb();
-                    $sql = "SELECT * FROM contacts";
-
-                    $results = mysqli_query($conn, $sql);
-                    if($results==false) {
-                        echo mysqli_error($conn);
-                    }
-                    else {
-                        $contacts = mysqli_fetch_all($results, MYSQLI_ASSOC);
-                    }
-            ?>
                 <thead>
                     <tr>
-                        <th>S.N</th>
+                        <th>S No.</th>
                         <th>Name</th>
-                        <th>Phone</th>
                         <th>E-mail</th>
-                        <th>Address</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($contacts as $contact): ?>
                     <tr>
-                        <td><?= $contact['id']; ?></td>
-                        <td><?= $contact['name']; ?></td>
-                        <td><?= $contact['phone']; ?></td>
-                        <td><?= $contact['email']; ?></td>
-                        <td><?= $contact['address']; ?></td>
+                        <td>01</td>
+                        <td>Lallon</td>
+                        <td>Lallon23@gmail.com</td>
                         <td>
-                            <a href=""><button><ion-icon name="create-outline"></ion-icon></button></a>
+                            <button><ion-icon name="folder-open-outline"></ion-icon></button>
+                            <button><ion-icon name="create-outline"></ion-icon></button>
                             <button><ion-icon name="trash-outline"></ion-icon></button>
                         </td>
                     </tr>
-                    <?php endforeach; ?>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>02</td>
+                        <td>Modon</td>
+                        <td>Modon@gmail.com</td>
+                        <td>
+                            <button><ion-icon name="folder-open-outline"></ion-icon></button>
+                            <button><ion-icon name="create-outline"></ion-icon></button>
+                            <button><ion-icon name="trash-outline"></ion-icon></button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>03</td>
+                        <td>shila</td>
+                        <td>shila16@gmail.com</td>
+                        <td>
+                            <button><ion-icon name="folder-open-outline"></ion-icon></button>
+                            <button><ion-icon name="create-outline"></ion-icon></button>
+                            <button><ion-icon name="trash-outline"></ion-icon></button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>04</td>
+                        <td>Shanti</td>
+                        <td>Omshanti@gmail.com</td>
+                        <td>
+                            <button><ion-icon name="folder-open-outline"></ion-icon></button>
+                            <button><ion-icon name="create-outline"></ion-icon></button>
+                            <button><ion-icon name="trash-outline"></ion-icon></button>
+                        </td>
+                    </tr>
                 </tbody>
             
             </table>
