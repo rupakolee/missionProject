@@ -1,3 +1,23 @@
+<?php
+require 'includes/database.php';
+if ($_SERVER['REQUEST_METHOD']=="POST") {
+    $conn = getDb();
+    $sql ="SELECT * FROM contacts where id=?";
+
+        $stmt = mysqli_prepare($conn, $sql);
+        if ($stmt == false) {
+             echo mysqli_error($conn);
+        }
+        else {
+            mysqli_stmt_bind_param($stmt, "s", $id);
+            if (mysqli_stmt_execute($stmt)) {
+                $result = mysqli_stmt_get_result($stmt);
+                return mysqli_fetch_array($result, MYSQLI_ASSOC);
+            }
+        }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +63,7 @@
         .button-container {
             display: flex;
             justify-content: center;
+            align-items: center;
         }
         .button {
             margin: 10px;
@@ -52,6 +73,25 @@
             cursor: pointer;
             background-color: #66cc66;
             color: #ffffff;
+        }
+        .button-save {
+            cursor: pointer;
+            background-color: #66cc66;
+            color: #ffffff;
+        }
+        .button-save:hover{
+            background-color: #55a855;
+        }
+        .button-cancel {
+            cursor: pointer;
+            background-color: #ff6666;
+            color: #ffffff;
+        }
+        .button-cancel:hover{
+            background-color: #c64f4f;
+        }
+        .button:active{
+            background-color: lightslategray;
         }
     </style>
 </head>
@@ -76,10 +116,12 @@
                 <textarea id="address" name="address"></textarea>
             </div>
             <div class="button-container">
-                <button class="button" type="submit">Save</button>
+                <button class="button button-save" type="submit">Save</button>
+                <button class="button button-cancel" type="button" onclick="window.location.href='home.php'">Cancel</button>
             </div>
         </form>
     </div>
+    
 </body>
 </html>
 

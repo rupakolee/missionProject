@@ -137,7 +137,6 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 </head>
 <body>
     <div class="add-container">
-        <a href="home.php"><button type=back><ion-icon name="arrow-back-outline"></ion-icon></button></a>
         <h1>Add Contact</h1>
         <form method="POST">
             
@@ -176,7 +175,6 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
         ?></h5>
         </form>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
