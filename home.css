@@ -302,9 +302,7 @@ input{
 .add_new{
     padding: 10px 20px;
     color: white;
-    background-color: #0298cf;
-    position: relative;
-    left: 1550px;   
+    background-color: #0298cf;   
     transition: 0.4s;
     border: none;
 }
