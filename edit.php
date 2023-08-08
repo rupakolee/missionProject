@@ -2,19 +2,14 @@
 require 'includes/database.php';
 if ($_SERVER['REQUEST_METHOD']=="POST") {
     $conn = getDb();
-    $sql ="SELECT * FROM contacts where id=?";
-
-        $stmt = mysqli_prepare($conn, $sql);
-        if ($stmt == false) {
-             echo mysqli_error($conn);
-        }
-        else {
-            mysqli_stmt_bind_param($stmt, "s", $id);
-            if (mysqli_stmt_execute($stmt)) {
-                $result = mysqli_stmt_get_result($stmt);
-                return mysqli_fetch_array($result, MYSQLI_ASSOC);
-            }
-        }
+    $sql = "SELECT * FROM contacts";
+    $results=mysqli_query($conn, $sql);
+if($results==false){
+   echo mysqli_error($conn);
+}
+else{
+    $contact = mysqli_fetch_all($results, MYSQLI_ASSOC);
+}
 }
 ?>
 
@@ -99,9 +94,12 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
     <div class="edit-container">
         <h1>Edit Details</h1>
         <form>
+            <?php if(empty($contact)): ?>
+                <p>Nothing found</p>
+                <?php else: ?>
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="">
+                <input type="text" id="name" name="name" value="<?= $contact['name']; ?>">
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -119,6 +117,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
                 <button class="button button-save" type="submit">Save</button>
                 <button class="button button-cancel" type="button" onclick="window.location.href='home.php'">Cancel</button>
             </div>
+            <?php endif; ?>
         </form>
     </div>
     
