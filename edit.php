@@ -1,17 +1,15 @@
 <?php
 require 'includes/database.php';
-
-if ($_SERVER['REQUEST_METHOD']=="POST") {
     $conn = getDb();
-    $sql = "SELECT * FROM contacts";
+    $sql = "SELECT * FROM contacts where id = ".$_GET['id'];
     $results=mysqli_query($conn, $sql);
 if($results==false){
    echo mysqli_error($conn);
 }
 else{
-    $contacts = mysqli_fetch_all($results, MYSQLI_ASSOC);
+    $contact = mysqli_fetch_assoc($results);
 }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -95,26 +93,24 @@ else{
     <div class="edit-container">
         <h1>Edit Details</h1>
         <form method="POST">
-            <?php if(empty($contacts)): ?>
+            <?php if(empty($contact)): ?>
                 <p>Nothing found</p>
                 <?php else: ?>
             <div class="form-group">
                 <label for="name">Name:</label>
-                <?php foreach($contacts as $contact): ?>
                 <input type="text" id="name" name="name" value="<?= $contact['name']; ?>">
-                <?php endforeach; ?>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="">
+                <input type="email" id="email" name="email" value="<?= $contact['email']; ?>">
             </div>
             <div class="form-group">
-                <label for="Number">Phone Number:</label>
-                <input type="num" id="number" name="number" value="">
+                <label for="text">Phone Number:</label>
+                <input type="phone" id="number" name="number" value="<?= $contact['phone']; ?>">
             </div>
             <div class="form-group">
                 <label for="address">Address:</label>
-                <textarea id="address" name="address"></textarea>
+                <input type="text" id="address" name="address" value="<?= $contact['address']; ?>">
             </div>
             <div class="button-container">
                 <button class="button button-save" type="submit">Save</button>
