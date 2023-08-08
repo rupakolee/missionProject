@@ -20,6 +20,9 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
     }
     if(empty($phone)){
         $phoneErr = "Please enter Phone number!";
+        if ($phone>999999999 && $phone<10000000000) {
+            $phoneErr = "Number length invalid!";
+        }
         if(!is_numeric($phone)) {
             $phoneErr = "Phone number must be numeric!";
         }
