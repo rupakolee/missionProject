@@ -1,5 +1,6 @@
 <?php
 require 'includes/database.php';
+
 if ($_SERVER['REQUEST_METHOD']=="POST") {
     $conn = getDb();
     $sql = "SELECT * FROM contacts";
@@ -8,7 +9,7 @@ if($results==false){
    echo mysqli_error($conn);
 }
 else{
-    $contact = mysqli_fetch_all($results, MYSQLI_ASSOC);
+    $contacts = mysqli_fetch_all($results, MYSQLI_ASSOC);
 }
 }
 ?>
@@ -94,7 +95,7 @@ else{
     <div class="edit-container">
         <h1>Edit Details</h1>
         <form>
-            <?php if(empty($contact)): ?>
+            <?php if(empty($contacts)): ?>
                 <p>Nothing found</p>
                 <?php else: ?>
             <div class="form-group">
