@@ -94,7 +94,7 @@ else{
 <body>
     <div class="edit-container">
         <h1>Edit Details</h1>
-        <form>
+        <form method="POST">
             <?php if(empty($contacts)): ?>
                 <p>Nothing found</p>
                 <?php else: ?>
