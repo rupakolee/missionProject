@@ -20,12 +20,12 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
     }
     if(empty($phone)){
         $phoneErr = "Please enter Phone number!";
-        if ($phone>999999999 && $phone<10000000000) {
-            $phoneErr = "Number length invalid!";
-        }
-        if(!is_numeric($phone)) {
-            $phoneErr = "Phone number must be numeric!";
-        }
+    }
+    if(!is_numeric($phone)) {
+        $phoneErr = "Phone number must be numeric!";
+    }
+    if ($phone>9999999999 || $phone<1000000000) {
+        $phoneErr = "Number length invalid!";
     }
 
     if (empty($nameErr) && empty($phoneErr)) {
@@ -41,6 +41,9 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
     }
     else {
         mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $phone, $address);
+        if(mysqli_stmt_execute($stmt)){
+            $success = "Contact added successfully!";
+        }
     }
 
 }
@@ -170,12 +173,10 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
                 <button class="button button-cancel" type="button" onclick="window.location.href='home.php'">Cancel</button>
             </div>
             <h5><?php 
-            if ($_SERVER['REQUEST_METHOD']=="POST") {
-                if(mysqli_stmt_execute($stmt)){
-                    echo "Contact added successfully!";
-                }
-        }
-        ?></h5>
+            if (isset($success)) {
+                echo $success;
+            }
+            ?></h5>
         </form>
     </div>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
