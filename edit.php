@@ -99,7 +99,9 @@ else{
                 <?php else: ?>
             <div class="form-group">
                 <label for="name">Name:</label>
+                <?php foreach($contacts as $contact): ?>
                 <input type="text" id="name" name="name" value="<?= $contact['name']; ?>">
+                <?php endforeach; ?>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
