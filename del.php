@@ -1,25 +1,3 @@
-<?php
-require 'includes/database.php';
-
-if ($_SERVER['REQUEST_METHOD']=="POST") {
-    $conn = getDb();
-    $sql ="SELECT * FROM contacts where id=?";
-
-        $stmt = mysqli_prepare($conn, $sql);
-        if ($stmt == false) {
-             echo mysqli_error($conn);
-        }
-        else {
-            mysqli_stmt_bind_param($stmt, "s", $id);
-            if (mysqli_stmt_execute($stmt)) {
-                $result = mysqli_stmt_get_result($stmt);
-                return mysqli_fetch_array($result, MYSQLI_ASSOC);
-            }
-        }
-}
-?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,12 +55,40 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 </head>
 <body>
     <div class="delete-container">
-        <h1>Delete Confirmation</h1>
-        <p class="message">Are you sure you want to delete?</p>
-        <div class="button-container">
-            <button class="button button-yes">Yes</button>
-            <button class="button button-no" onclick="window.location.href='home.php'">No</button>
-        </div>
+        <form method="post">
+            <h1>Delete Confirmation</h1>
+            <p class="message">Are you sure you want to delete?</p>
+            <div class="button-container">
+                <button type="submit" class="button button-yes">Yes</button>
+                <button class="button button-no" onclick="window.location.href='home.php'">No</button>
+            </div>
+        </form>
+        <p>
+            <?php if(isset($success)): ?>
+                <?=$success?>
+                <?php endif; ?>
+                
+        </p>
     </div>
 </body>
 </html>
+
+
+<?php
+    require 'includes/database.php';
+
+    if ($_SERVER['REQUEST_METHOD']=="POST") {
+        $conn = getDb();
+
+        $sql = "DELETE * from contacts where id=".$_GET['id'];
+
+        $result=mysqli_query($conn, $sql);
+        if ($result==false) {
+            echo mysqli_error($conn);
+        }
+
+        else{
+            $success = "Contact deleted successfully";
+        }
+    }
+?>

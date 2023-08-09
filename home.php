@@ -113,8 +113,8 @@ session_start();
                         <td><?= $contact['email']; ?></td>
                         <td><?= $contact['address']; ?></td>
                         <td>
-                            <a href="edit.php?id = <?= $contact['id'];?>"><button><ion-icon name="create-outline"></ion-icon></button></a>
-                            <a href="del.php?id = <?= $contact['id'];?>"><button><ion-icon name="trash-outline"></ion-icon></button></a>
+                            <a href="edit.php?id=<?= $contact['id']; ?>"><button><ion-icon name="create-outline"></ion-icon></button></a>
+                            <a href="del.php?id=<?= $contact['id']; ?>"><button><ion-icon name="trash-outline"></ion-icon></button></a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

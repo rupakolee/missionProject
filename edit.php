@@ -9,7 +9,6 @@ if($results==false){
 else{
     $contact = mysqli_fetch_assoc($results);
 }
-
 ?>
 
 <!DOCTYPE html>
