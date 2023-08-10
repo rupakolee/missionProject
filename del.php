@@ -60,16 +60,10 @@
             <p class="message">Are you sure you want to delete?</p>
             <div class="button-container">
                 <button type="submit" class="button button-yes">Yes</button>
-                <button class="button button-no" onclick="window.location.href='home.php'">No</button>
+                <button class="button button-no" type="button" onclick="window.location.href='home.php'">No</button>
             </div>
         </form>
-        <p>
-            <?php if(isset($success)): ?>
-                <?=$success?>
-                <?php endif; ?>
-                
-        </p>
-    </div>
+     </div>
 </body>
 </html>
 
@@ -80,15 +74,14 @@
     if ($_SERVER['REQUEST_METHOD']=="POST") {
         $conn = getDb();
 
-        $sql = "DELETE * from contacts where id=".$_GET['id'];
+        $sql = "DELETE FROM contacts where id=".$_GET['id'];
 
         $result=mysqli_query($conn, $sql);
         if ($result==false) {
             echo mysqli_error($conn);
         }
-
         else{
-            $success = "Contact deleted successfully";
+            header("Location: home.php");
         }
     }
 ?>
