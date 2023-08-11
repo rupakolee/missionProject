@@ -12,7 +12,6 @@ else{
 ?>
 
 <!DOCTYPE html>
-<html>
 <head>
     <title>Edit Details</title>
     <style>
@@ -86,6 +85,11 @@ else{
         .button:active{
             background-color: lightslategray;
         }
+        .return{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -115,10 +119,48 @@ else{
                 <button class="button button-save" type="submit">Save</button>
                 <button class="button button-cancel" type="button" onclick="window.location.href='home.php'">Cancel</button>
             </div>
+            <h5 style="color:#66cc66";>
+                <?php if(isset($success)): ?>
+                    <?=$success;?>
+                </h5>
+                <div class="return">
+                    <button class="button button-cancel" type="button" onclick="window.location.href='home.php'">Return to home</button>
+                </div>
+                <?php endif; ?>
             <?php endif; ?>
         </form>
     </div>
     
+    <?php
+
+    if ($_SERVER['REQUEST_METHOD']=="POST") {
+        
+        $name = $contact['name'];
+        $email = $contact['email'];
+        $phone = $contact['phone'];
+        $address = $contact['address'];
+
+        // $sql = "UPDATE contacts SET name='?', email='?', phone='?', address='?' WHERE id=".$_GET['id'];
+        // $stmt = mysqli_prepare($conn, $sql);
+
+        // if($stmt==false) {
+        //     echo mysqli_error($conn);
+        // }
+        // else {
+        //     mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $phone, $address);
+        //     if(mysqli_stmt_execute($stmt)) {
+        //         $success = "Contact updated successfully!";
+        //     }
+        // }
+
+        $sql = "UPDATE contacts SET name='{$name}', email='{$email}', phone='{$phone}', address='{$address}' WHERE id=".$_GET['id'];
+        $result = mysqli_query($conn, $sql);
+
+        if($result) {
+            $success = "Contact updated successfully!";
+        }
+    }
+?>
 </body>
 </html>
 

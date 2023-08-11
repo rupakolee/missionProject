@@ -1,3 +1,22 @@
+<?php
+    require 'includes/database.php';
+
+    if ($_SERVER['REQUEST_METHOD']=="POST") {
+        $conn = getDb();
+
+        $sql = "DELETE FROM contacts WHERE id=".$_GET['id'];
+        $result = mysqli_query($conn, $sql);
+
+        if($result==false){
+            echo mysqli_error($conn);
+        }
+
+        else{
+            $success = "Contact deleted successfully!";
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,44 +70,42 @@
             background-color: #66cc66;
             color: #ffffff;
         }
+        h5 {
+            text-align: center;
+            color:#66cc66;
+        }
+        .return {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
     <div class="delete-container">
+
         <form method="post">
             <h1>Delete Confirmation</h1>
             <p class="message">Are you sure you want to delete?</p>
             <div class="button-container">
                 <button type="submit" class="button button-yes">Yes</button>
-                <button class="button button-no" onclick="window.location.href='home.php'">No</button>
+                <button type="button" class="button button-no" onclick="window.location.href='home.php'">No</button>
             </div>
         </form>
-        <p>
+
+        <h5 style="
+        text-align: center;
+        color:#66cc66;
+        font-weight: 700;">
             <?php if(isset($success)): ?>
-                <?=$success?>
-                <?php endif; ?>
-                
-        </p>
+                <?=$success;?>
+            </h5>
+            <div class="return">
+                    <button type="button" class="button button-no" onclick="window.location.href='home.php'">Return to home</button>
+                    <?php endif; ?>
+                </div>
     </div>
 </body>
 </html>
 
 
-<?php
-    require 'includes/database.php';
-
-    if ($_SERVER['REQUEST_METHOD']=="POST") {
-        $conn = getDb();
-
-        $sql = "DELETE * from contacts where id=".$_GET['id'];
-
-        $result=mysqli_query($conn, $sql);
-        if ($result==false) {
-            echo mysqli_error($conn);
-        }
-
-        else{
-            $success = "Contact deleted successfully";
-        }
-    }
-?>

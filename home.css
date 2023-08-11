@@ -233,7 +233,7 @@
 }
 body{
     font-family: 'Poppins',sans-serif;
-    overflow: hidden;
+    overflow: scroll;
 }
 .table{
     width: 100%;

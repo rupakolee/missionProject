@@ -138,6 +138,11 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
             text-align: center;
             color:#66cc66;
         }
+        .return {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
       
     </style>
 </head>
@@ -172,11 +177,14 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
                 <button class="button button-save" type="submit">Save</button>
                 <button class="button button-cancel" type="button" onclick="window.location.href='home.php'">Cancel</button>
             </div>
-            <h5><?php 
-            if (isset($success)) {
-                echo $success;
-            }
-            ?></h5>
+            <h5>
+                <?php if (isset($success)): ?>
+                    <?=$success;?>
+                </h5>
+                <div class="return">
+                    <button type="button" class="button button-cancel" onclick="window.location.href='home.php'">Return to home</button>
+                    <?php endif; ?>
+                </div>
         </form>
     </div>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
