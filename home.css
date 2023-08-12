@@ -235,9 +235,7 @@ body{
     font-family: 'Poppins',sans-serif;
     overflow: scroll;
 }
-.table{
-    width: 100%;
-}
+
 .table_header{
     display: flex;
     justify-content: space-between;
@@ -310,32 +308,4 @@ input{
    background-color: white;
    color: #0298cf;
 }
-.table_section{
-    height: 650px;
-    overflow: auto;
-}
-table{
-    width: 100%;
-    table-layout: fixed;
-    min-width: 1000px;
-}
-thead th{
-    position: sticky;
-    top: 0;
-    background-color: honeydew;
-    font-size: 15px;
-}
-th,td{
-    border-bottom: 1px solid #dddddd;
-    padding: 10px 20px;
-    word-break: break-all;
-    text-align: center;
-}
-ion-icon{
-    padding: 10px 20px;
-}
-ion-icon:hover {
-  background-color: rgb(185, 185, 185);
-  transition: 0.3s ease-in-out;
-  border-radius: 4px;
-}
+
