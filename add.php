@@ -1,6 +1,5 @@
 <?php
 
-require 'includes/database.php';
 $name='';
 $email='';
 $phone='';
@@ -61,8 +60,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
             background-color: #f0f0f0;
         }
         .add-container {
-            width: 400px;
-            margin: 100px auto;
+            width: 300px;
             padding: 20px;
             background-color: #ffffff;
             border: 1px solid #dddddd;
@@ -89,13 +87,13 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
             margin-bottom: 5px;
         }
         .form-group input {
-            width: 100%;
+            width: 80%;
             padding: 8px;
             border: 1px solid #dddddd;
             border-radius: 5px;
         }
         .form-group textarea {
-            width: 100%;
+            width: 80%;
             padding: 8px;
             border: 1px solid #dddddd;
             border-radius: 5px;
