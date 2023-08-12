@@ -2,8 +2,6 @@
 session_start();
 ?>
 
-<?php require 'includes/database.php'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +12,7 @@ session_start();
 </head>
 <body>
     <div id="header">
-        <div class="logo"> <img src='NIST.png'> </div> 
+        <div class="logo"> <img src='NIST.png'> </div> <h5></h5>
         <div class="menu">
             <div class="background background--light">
                 <form method="post">
@@ -55,9 +53,11 @@ session_start();
     if($_SERVER['REQUEST_METHOD']=="POST") {
         session_destroy();
         header("Location: login.php");
+        
     }
 ?>
               </div>
+              
         </div>
     </div>
 
@@ -68,21 +68,64 @@ session_start();
             <div class="search_bar">
                 <input type="text" placeholder="Search">
                 <button type="search"> <ion-icon name="search-outline"></ion-icon></button><br>
-                <a href="#"> <i class="fas fa-search"></i> </a>
+               
+                <a href="#"> 
+                <i class="fas fa-search"></i>
+                </a>
             </div>
-            
         </div>
     </div>
+    <button class="add_new">Add New <b>+</b></button>
+    <section class="whole">
+        <div class="add-section">
+                <?php require 'add.php'; ?>
+        </div>
+        <div class="table_section">
+        <table>
 
-<div class="main">
+<?php 
+    require 'includes/database.php';
 
-    <div class="add-section">
-        <a href="add.php"><button class="add_new">Add New <b>+</b></button></a>
-        <?php require 'add.php'; ?>
-    </div>
-    
-</div>
-            
+        $conn = getDb();
+        $sql = "SELECT * FROM contacts";
+
+        $results = mysqli_query($conn, $sql);
+        if($results==false) {
+            echo mysqli_error($conn);
+        }
+        else {
+            $contacts = mysqli_fetch_all($results, MYSQLI_ASSOC);
+        }
+?>
+    <thead>
+        <tr>
+            <th>S.N</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>E-mail</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($contacts as $contact): ?>
+        <tr>
+            <td><?= $contact['id']; ?></td>
+            <td><?= $contact['name']; ?></td>
+            <td><?= $contact['phone']; ?></td>
+            <td><?= $contact['email']; ?></td>
+            <td><?= $contact['address']; ?></td>
+            <td>
+                <a href="edit.php?id=<?= $contact['id']; ?>"><button><ion-icon name="create-outline"></ion-icon></button></a>
+                <a href="del.php?id=<?= $contact['id']; ?>"><button><ion-icon name="trash-outline"></ion-icon></button></a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+
+        </table>
+        </div>
+        </section>
 
     <script src="logout.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
