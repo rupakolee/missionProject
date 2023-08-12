@@ -75,7 +75,7 @@ session_start();
             </div>
         </div>
     </div>
-    <button class="add_new">Add New <b>+</b></button>
+    <button class="add_new" id="add">Add New <b>+</b></button>
     <section class="whole">
         <div class="add-section">
                 <?php require 'add.php'; ?>
@@ -128,6 +128,7 @@ session_start();
         </section>
 
     <script src="logout.js"></script>
+    <script src="add.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

@@ -364,15 +364,6 @@ input {
     color: #0298cf;
 }
 
-.table_section {
-    height: 650px;
-    overflow: auto;
-}
-
-table {
-    width: auto;
-}
-
 thead th {
     position: sticky;
     top: 0;
@@ -397,7 +388,16 @@ ion-icon:hover {
     transition: 0.3s ease-in-out;
     border-radius: 4px;
 }
-
+.whole {
+    display: flex;
+}
+.add-section {
+    position: absolute;
+    left: -400px;
+}
 .table_section {
+    width: 100%;
+}
+table{
     width: 100%;
 }

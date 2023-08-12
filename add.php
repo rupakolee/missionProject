@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
             background-color: #f0f0f0;
         }
         .add-container {
-            width: 300px;
+            width: 260px;
             padding: 20px;
             background-color: #ffffff;
             border: 1px solid #dddddd;
@@ -87,17 +87,10 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
             margin-bottom: 5px;
         }
         .form-group input {
-            width: 80%;
+            width: 85%;
             padding: 8px;
             border: 1px solid #dddddd;
             border-radius: 5px;
-        }
-        .form-group textarea {
-            width: 80%;
-            padding: 8px;
-            border: 1px solid #dddddd;
-            border-radius: 5px;
-            resize: none;
         }
         .button-container {
             display: flex;
@@ -169,22 +162,21 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
             </div>
             <div class="form-group">
                 <label for="address">Address:</label>
-                <textarea id="address" name="address"></textarea>
+                <input type="text" id="address" name="address">
             </div>
             <div class="button-container">
                 <button class="button button-save" type="submit">Save</button>
-                <button class="button button-cancel" type="button" onclick="window.location.href='home.php'">Cancel</button>
+                <button class="button button-cancel" type="button" id="cancel">Cancel</button>
             </div>
             <h5>
                 <?php if (isset($success)): ?>
                     <?=$success;?>
-                </h5>
-                <div class="return">
-                    <button type="button" class="button button-cancel" onclick="window.location.href='home.php'">Return to home</button>
                     <?php endif; ?>
-                </div>
+            </h5>
+                
         </form>
     </div>
+    <script src="add.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
