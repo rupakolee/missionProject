@@ -3,7 +3,6 @@ session_start();
 ?>
 <?php require 'includes/database.php'; ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +57,6 @@ session_start();
         }
 ?>
               </div>
-              
         </div>
     </div>
 
@@ -129,6 +127,7 @@ session_start();
 
     <script src="logout.js"></script>
     <script src="add.js"></script>
+    <script src="edit.js"></script>
     <script src="del.js"></script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
