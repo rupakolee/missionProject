@@ -9,10 +9,7 @@ add.addEventListener('click',  function() {
 })
 
 cancel.addEventListener('click', function(){
-    if (addSec.style.position=="relative") {
         addSec.style.position="absolute";
         addSec.style.left="-400px";
         addSec.style.transition = "all 0.5s";
-
-    }
 })

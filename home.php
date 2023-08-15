@@ -1,6 +1,8 @@
 <?php
 session_start();
 ?>
+<?php require 'includes/database.php'; ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,14 +79,12 @@ session_start();
     </div>
     <button class="add_new" id="add">Add New <b>+</b></button>
     <section class="whole">
-        <div class="add-section">
-                <?php require 'add.php'; ?>
-        </div>
-        <div class="table_section">
+        <span class="add-section"> <?php require 'add.php'; ?> </span>
+        <span class="edit-section"> <?php require 'edit.php'; ?> </span>
+    <div class="table_section">
         <table>
 
 <?php 
-    require 'includes/database.php';
 
         $conn = getDb();
         $sql = "SELECT * FROM contacts";
@@ -116,8 +116,9 @@ session_start();
             <td><?= $contact['email']; ?></td>
             <td><?= $contact['address']; ?></td>
             <td>
-                <a href="edit.php?id=<?= $contact['id']; ?>"><button><ion-icon name="create-outline"></ion-icon></button></a>
-                <a href="del.php?id=<?= $contact['id']; ?>"><button><ion-icon name="trash-outline"></ion-icon></button></a>
+                <button type="submit" name="edit" id="edit"><ion-icon name="create-outline"></ion-icon></button>
+                <button id="del"><ion-icon name="trash-outline"></ion-icon></button>
+                <span class="del"><?php require 'del.php'; ?></span>
             </td>
         </tr>
         <?php endforeach; ?>
@@ -129,6 +130,8 @@ session_start();
 
     <script src="logout.js"></script>
     <script src="add.js"></script>
+    <script src="del.js"></script>
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

@@ -110,11 +110,13 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
             cursor: pointer;
             background-color: #54cb3f;
             color: #ffffff;
+            padding: 6px 10px;
         }
         .button-cancel {
             cursor: pointer;
             background-color: #ea0e0e;
             color: #ffffff;
+            padding: 6px 10px;
         }
         .required::before {
             content: '* ';
@@ -139,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 </head>
 <body>
     <div class="add-container">
-        <h1>Add Contact</h1>
+        <h1>Add a Contact</h1>
         <form method="POST">
             
             <div class="form-group">

@@ -1,13 +1,14 @@
 <?php
-require 'includes/database.php';
+if ($_SERVER['REQUEST_METHOD']=="POST") {
     $conn = getDb();
     $sql = "SELECT * FROM contacts where id = ".$_GET['id'];
     $results=mysqli_query($conn, $sql);
-if($results==false){
-   echo mysqli_error($conn);
-}
-else{
-    $contact = mysqli_fetch_assoc($results);
+    if($results==false){
+        echo mysqli_error($conn);
+    }
+    else{
+        $contact = mysqli_fetch_assoc($results);
+    }
 }
 ?>
 
@@ -18,14 +19,6 @@ else{
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
-        }
-        .edit-container {
-            width: 400px;
-            margin: 100px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #dddddd;
-            border-radius: 5px;
         }
         h1 {
             text-align: center;
@@ -85,11 +78,7 @@ else{
         .button:active{
             background-color: lightslategray;
         }
-        .return{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+       
     </style>
 </head>
 <body>
@@ -123,9 +112,6 @@ else{
                 <?php if(isset($success)): ?>
                     <?=$success;?>
                 </h5>
-                <div class="return">
-                    <button class="button button-cancel" type="button" onclick="window.location.href='home.php'">Return to home</button>
-                </div>
                 <?php endif; ?>
             <?php endif; ?>
         </form>

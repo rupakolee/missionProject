@@ -1,5 +1,4 @@
 <?php
-    require 'includes/database.php';
 
     if ($_SERVER['REQUEST_METHOD']=="POST") {
         $conn = getDb();
@@ -26,29 +25,12 @@
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
         }
-        .delete-container {
-            width: 400px;
-            margin: 100px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #dddddd;
-            border-radius: 5px;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .message {
-            text-align: center;
-            margin-bottom: 20px;
-        }
         .button-container {
             display: flex;
-            justify-content: center;
         }
         .button {
-            margin: 10px;
-            padding: 10px 20px;
+            margin: 4px;
+            padding: 0px 2px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -70,39 +52,18 @@
             background-color: #66cc66;
             color: #ffffff;
         }
-        h5 {
-            text-align: center;
-            color:#66cc66;
-        }
-        .return {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
     </style>
 </head>
 <body>
     <div class="delete-container">
 
         <form method="post">
-            <h1>Delete Confirmation</h1>
-            <p class="message">Are you sure you want to delete?</p>
             <div class="button-container">
-                <button type="submit" class="button button-yes">Yes</button>
-                <button type="button" class="button button-no" onclick="window.location.href='home.php'">No</button>
+                <button type="submit" class="button button-yes">+</button>
+                <button type="button" class="button button-no" onclick="window.location.href='home.php'">-</button>
             </div>
         </form>
 
-        <h5 style="
-        text-align: center;
-        color:#66cc66;
-        font-weight: 700;">
-            <?php if(isset($success)): ?>
-                <?=$success;?>
-            </h5>
-            <div class="return">
-                    <button type="button" class="button button-no" onclick="window.location.href='home.php'">Return to home</button>
-                    <?php endif; ?>
                 </div>
     </div>
 </body>
