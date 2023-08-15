@@ -40,9 +40,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
     }
     else {
         mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $phone, $address);
-        if(mysqli_stmt_execute($stmt)){
-            $success = "Contact added successfully!";
-        }
+        mysqli_stmt_execute($stmt); 
     }
 
 }
@@ -170,11 +168,6 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
                 <button class="button button-save" type="submit">Save</button>
                 <button class="button button-cancel" type="button" id="cancel">Cancel</button>
             </div>
-            <h5>
-                <?php if (isset($success)): ?>
-                    <?=$success;?>
-                    <?php endif; ?>
-            </h5>
                 
         </form>
     </div>
