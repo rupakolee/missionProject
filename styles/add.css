@@ -3,6 +3,7 @@ body {
     background-color: #f0f0f0;
 }
 .add-container {
+    width: 300px;
     width: 260px;
     padding: 20px;
     background-color: #ffffff;
@@ -30,10 +31,18 @@ h1 {
     margin-bottom: 5px;
 }
 .form-group input {
+    width: 80%;
     width: 85%;
     padding: 8px;
     border: 1px solid #dddddd;
     border-radius: 5px;
+}
+.form-group textarea {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    resize: none;
 }
 .button-container {
     display: flex;

@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER['REQUEST_METHOD']=="POST") {
+    require 'includes/database.php'; 
     $conn = getDb();
     $sql = "SELECT * FROM contacts where id = ".$_GET['id'];
     $results=mysqli_query($conn, $sql);
@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
     else{
         $contact = mysqli_fetch_assoc($results);
     }
-}
+
 ?>
 
 <!DOCTYPE html>
