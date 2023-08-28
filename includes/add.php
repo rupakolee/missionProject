@@ -27,6 +27,8 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
         $phoneErr = "Number length invalid!";
     }
 
+    //VALIDATION ENDS HERE
+
     if (empty($nameErr) && empty($phoneErr)) {
     $conn = getDb();
 

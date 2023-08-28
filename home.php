@@ -1,7 +1,6 @@
 <?php
 session_start();
 ?>
-<?php require 'includes/database.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,23 +76,14 @@ session_start();
     <button class="add_new" id="add">Add New <b>+</b></button>
     <section class="whole">
         <span class="add-section"> <?php require 'add.php'; ?> </span>
-        <span class="edit-section"> <?php require 'edit.php'; ?> </span>
+        <!-- <span class="edit-section"> <?php require 'edit.php'; ?> </span> -->
     <div class="table_section">
         <table>
 
 <?php 
-
-        $conn = getDb();
-        $sql = "SELECT * FROM contacts";
-
-        $results = mysqli_query($conn, $sql);
-        if($results==false) {
-            echo mysqli_error($conn);
-        }
-        else {
-            $contacts = mysqli_fetch_all($results, MYSQLI_ASSOC);
-        }
+        require './includes/home.php';
 ?>
+
     <thead>
         <tr>
             <th>S.N</th>
