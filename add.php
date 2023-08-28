@@ -1,143 +1,10 @@
-<?php
-
-$name='';
-$email='';
-$phone='';
-$address='';
-
-if ($_SERVER['REQUEST_METHOD']=="POST") {
-    $name = $_POST['name'];
-    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-    $phone = filter_input(INPUT_POST, "phone", FILTER_SANITIZE_STRING);
-    $address = $_POST['address'];
-
-    $nameErr='';
-    $phoneErr='';
-
-    if (empty($name)) {
-        $nameErr = "Please enter name!";
-    }
-    if(empty($phone)){
-        $phoneErr = "Please enter Phone number!";
-    }
-    if(!is_numeric($phone)) {
-        $phoneErr = "Phone number must be numeric!";
-    }
-    if ($phone>9999999999 || $phone<1000000000) {
-        $phoneErr = "Number length invalid!";
-    }
-
-    if (empty($nameErr) && empty($phoneErr)) {
-    $conn = getDb();
-
-    $sql = "INSERT INTO contacts (name, email, phone, address)
-    VALUES (?,?,?,?)";
-
-    $stmt = mysqli_prepare($conn, $sql);
-
-    if($stmt==false) {
-        echo mysqli_error($conn);
-    }
-    else {
-        mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $phone, $address);
-        if(mysqli_stmt_execute($stmt)){
-            $success = "Contact added successfully!";
-        }
-    }
-
-}
-}
-    
-?>
+<?php require './includes/add.php'; ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Add contact</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-        .add-container {
-            width: 260px;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #dddddd;
-            border-radius: 5px;
-        }
-        button {
-            cursor: pointer;
-
-        }
-        ion-icon{
-            cursor: pointer;
-            padding: 5px;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 85%;
-            padding: 8px;
-            border: 1px solid #dddddd;
-            border-radius: 5px;
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .button {
-            margin: 10px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #66cc66;
-            color: #ffffff;
-        }
-        .button-save {
-            cursor: pointer;
-            background-color: #54cb3f;
-            color: #ffffff;
-            padding: 6px 10px;
-        }
-        .button-cancel {
-            cursor: pointer;
-            background-color: #ea0e0e;
-            color: #ffffff;
-            padding: 6px 10px;
-        }
-        .required::before {
-            content: '* ';
-            color: red;
-        }
-        .error {
-            color: red;
-            font-style: italic;
-            font-size: 12px;
-        }
-        h5 {
-            text-align: center;
-            color:#66cc66;
-        }
-        .return {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-      
-    </style>
+    <link rel="stylesheet" href="./styles/add.css">
 </head>
 <body>
     <div class="add-container">
@@ -178,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
                 
         </form>
     </div>
-    <script src="add.js"></script>
+    <script src="./scripts/add.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

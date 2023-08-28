@@ -3,7 +3,7 @@ body {
     background-color: #f0f0f0;
 }
 .add-container {
-    width: 300px;
+    width: 260px;
     padding: 20px;
     background-color: #ffffff;
     border: 1px solid #dddddd;
@@ -30,17 +30,10 @@ h1 {
     margin-bottom: 5px;
 }
 .form-group input {
-    width: 80%;
+    width: 85%;
     padding: 8px;
     border: 1px solid #dddddd;
     border-radius: 5px;
-}
-.form-group textarea {
-    width: 80%;
-    padding: 8px;
-    border: 1px solid #dddddd;
-    border-radius: 5px;
-    resize: none;
 }
 .button-container {
     display: flex;
@@ -60,11 +53,13 @@ h1 {
     cursor: pointer;
     background-color: #54cb3f;
     color: #ffffff;
+    padding: 6px 10px;
 }
 .button-cancel {
     cursor: pointer;
     background-color: #ea0e0e;
     color: #ffffff;
+    padding: 6px 10px;
 }
 .required::before {
     content: '* ';
