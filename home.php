@@ -1,5 +1,6 @@
 <?php
 session_start();
+require './includes/database.php';
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +77,7 @@ session_start();
     <button class="add_new" id="add">Add New <b>+</b></button>
     <section class="whole">
         <span class="add-section"> <?php require 'add.php'; ?> </span>
-        <!-- <span class="edit-section"> <?php require 'edit.php'; ?> </span> -->
+        <span class="edit-section"> <?php require 'edit.php'; ?> </span>
     <div class="table_section">
         <table>
 

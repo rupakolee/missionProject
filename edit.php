@@ -1,6 +1,5 @@
 <?php
-    require './includes/database.php';  //has a function which returns connection 
-    require './includes/edit.php';      //has a function that returns contact array
+    require './includes/edit.php';      
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +12,6 @@
         <h1>Edit Details</h1>
         <form method="POST">
             <?php
-            fetch();        //fetch functon called that returns us contact variable.
             if(empty($contact)): ?>
                 <p>Nothing found</p>
                 <?php else: ?>
