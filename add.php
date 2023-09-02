@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Add contact</title>
-    <link rel="stylesheet" href="./styles/add.css">
+    <link rel="stylesheet" href="styles/add.css">
 </head>
 <body>
     <div class="add-container">
@@ -42,7 +42,7 @@
                 
         </form>
     </div>
-    <script src="./scripts/add.js"></script>
+    <script src="scripts/add.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

@@ -1,12 +1,11 @@
 <?php
 session_start();
-require './includes/database.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="styles/home.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact management system</title>
@@ -77,14 +76,12 @@ require './includes/database.php';
     <button class="add_new" id="add">Add New <b>+</b></button>
     <section class="whole">
         <span class="add-section"> <?php require 'add.php'; ?> </span>
-        <span class="edit-section"> <?php require 'edit.php'; ?> </span>
+        <!-- <span class="edit-section"> <?php require 'edit.php'; ?> </span> -->
+        
+        
+    <?php require 'includes/home.php'; ?>
     <div class="table_section">
         <table>
-
-<?php 
-        require './includes/home.php';
-?>
-
     <thead>
         <tr>
             <th>S.N</th>
@@ -96,6 +93,9 @@ require './includes/database.php';
         </tr>
     </thead>
     <tbody>
+      <?php if(empty($contacts)): ?>
+        <p> Empty Contacts List! </p>
+        <?php else: ?>
         <?php foreach($contacts as $contact): ?>
         <tr>
             <td><?= $contact['id']; ?></td>
@@ -110,17 +110,17 @@ require './includes/database.php';
             </td>
         </tr>
         <?php endforeach; ?>
+        <?php endif; ?>
     </tbody>
 
         </table>
         </div>
         </section>
 
-    <script src="logout.js"></script>
-    <script src="add.js"></script>
-    <script src="edit.js"></script>
-    <script src="del.js"></script>
-
+    <script src="./includes/scripts/logout.js"></script>
+    <script src="./includes/scripts/add.js"></script>
+    <script src="./includes/scripts/edit.js"></script>
+    <script src="./includes/scripts/del.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

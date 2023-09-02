@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <head>
     <title>Edit Details</title>
-    <link rel="stylesheet" href="./styles/edit.css">
+    <link rel="stylesheet" href="styles/edit.css">
 </head>
 <body>
     <div class="edit-container">

@@ -4,14 +4,13 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="./includes/styles/login.css">
+<link rel="stylesheet" href="styles/login.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact management system</title>
 </head>
 <body>
-
     <?php require 'credentials.php'; ?>
     <section>
         <div class="form-box">

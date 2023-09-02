@@ -1,5 +1,4 @@
 <?php
-
 function getDb() {
 
     $db_host="localhost";
@@ -12,6 +11,5 @@ function getDb() {
         // echo "PS:- You're connected to database.<br>";
         return $conn;
     }
-
 }
 ?>

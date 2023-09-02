@@ -1,4 +1,5 @@
 <?php
+        require "database.php";
         $conn = getDb();
         $sql = "SELECT * FROM contacts";
 

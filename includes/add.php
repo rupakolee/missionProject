@@ -1,5 +1,7 @@
 <?php
 
+require "database.php";
+
 $name='';
 $email='';
 $phone='';
@@ -46,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
             $success = "Contact added successfully!";
         }
     }
-
 }
 }
     
