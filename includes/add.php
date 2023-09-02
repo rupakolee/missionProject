@@ -31,9 +31,8 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 
     //VALIDATION ENDS HERE
 
+function add($conn) {
     if (empty($nameErr) && empty($phoneErr)) {
-    $conn = getDb();
-
     $sql = "INSERT INTO contacts (name, email, phone, address)
     VALUES (?,?,?,?)";
 

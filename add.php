@@ -1,5 +1,6 @@
 <?php 
-    require "./includes/add.php"; 
+    require "includes/add.php"; 
+    add($conn);
 ?>
 
 <!DOCTYPE html>

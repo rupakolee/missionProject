@@ -1,6 +1,10 @@
 <?php
 session_start();
 ?>
+<?php 
+      require "includes/database.php"; 
+      $conn = getDb();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -79,20 +83,22 @@ session_start();
         <!-- <span class="edit-section"> <?php require 'edit.php'; ?> </span> -->
         
         
-    <?php require 'includes/home.php'; ?>
-    <div class="table_section">
-        <table>
+        <div class="table_section">
+          <table>
     <thead>
-        <tr>
-            <th>S.N</th>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>E-mail</th>
-            <th>Address</th>
+      <tr>
+        <th>S.N</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>E-mail</th>
+        <th>Address</th>
             <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
+          </tr>
+        </thead>
+        <tbody>
+      <?php require 'includes/home.php'; 
+            $contacts = display($conn);
+      ?>
       <?php if(empty($contacts)): ?>
         <p> Empty Contacts List! </p>
         <?php else: ?>
