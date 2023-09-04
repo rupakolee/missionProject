@@ -4,6 +4,8 @@ session_start();
 <?php 
       require "includes/database.php"; 
       $conn = getDb();
+      require 'includes/home.php'; 
+      $contacts = display($conn);
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +81,7 @@ session_start();
     </div>
     <button class="add_new" id="add">Add New <b>+</b></button>
     <section class="whole">
-        <span class="add-section"> <?php require 'add.php'; ?> </span>
+        <!-- <span class="add-section"> <?php require 'add.php'; ?> </span> -->
         <!-- <span class="edit-section"> <?php require 'edit.php'; ?> </span> -->
         
         
@@ -92,14 +94,11 @@ session_start();
         <th>Phone</th>
         <th>E-mail</th>
         <th>Address</th>
-            <th>Action</th>
-          </tr>
-        </thead>
+        <th>Action</th>
+      </tr>
+    </thead>
         <tbody>
-      <?php require 'includes/home.php'; 
-            $contacts = display($conn);
-      ?>
-      <?php if(empty($contacts)): ?>
+        <?php if(empty($contacts)): ?>
         <p> Empty Contacts List! </p>
         <?php else: ?>
         <?php foreach($contacts as $contact): ?>
@@ -117,8 +116,7 @@ session_start();
         </tr>
         <?php endforeach; ?>
         <?php endif; ?>
-    </tbody>
-
+        </tbody>
         </table>
         </div>
         </section>

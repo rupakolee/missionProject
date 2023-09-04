@@ -7,7 +7,7 @@ function display($conn) {
     }
     else {
         $contacts = mysqli_fetch_all($results, MYSQLI_ASSOC);
+        return $contacts;
     }
-    return $contacts;
 }
 ?>
