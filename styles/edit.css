@@ -2,20 +2,13 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
 }
-.add-container {
-    width: 300px;
+.edit-container {
+    width: 400px;
+    margin: 100px auto;
     padding: 20px;
     background-color: #ffffff;
     border: 1px solid #dddddd;
     border-radius: 5px;
-}
-button {
-    cursor: pointer;
-
-}
-ion-icon{
-    cursor: pointer;
-    padding: 5px;
 }
 h1 {
     text-align: center;
@@ -30,13 +23,13 @@ h1 {
     margin-bottom: 5px;
 }
 .form-group input {
-    width: 80%;
+    width: 100%;
     padding: 8px;
     border: 1px solid #dddddd;
     border-radius: 5px;
 }
 .form-group textarea {
-    width: 80%;
+    width: 100%;
     padding: 8px;
     border: 1px solid #dddddd;
     border-radius: 5px;
@@ -58,29 +51,20 @@ h1 {
 }
 .button-save {
     cursor: pointer;
-    background-color: #54cb3f;
+    background-color: #66cc66;
     color: #ffffff;
+}
+.button-save:hover{
+    background-color: #55a855;
 }
 .button-cancel {
     cursor: pointer;
-    background-color: #ea0e0e;
+    background-color: #ff6666;
     color: #ffffff;
 }
-.required::before {
-    content: '* ';
-    color: red;
+.button-cancel:hover{
+    background-color: #c64f4f;
 }
-.error {
-    color: red;
-    font-style: italic;
-    font-size: 12px;
-}
-h5 {
-    text-align: center;
-    color:#66cc66;
-}
-.return {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.button:active{
+    background-color: lightslategray;
 }

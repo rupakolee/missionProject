@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+.delete-container {
+    width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.message {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+.button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button:active{
+    background-color: darkslategray;
+}
+.button-yes:hover {
+    background-color: #55a855;
+}
+.button-no {
+    background-color: #ff6666;
+    color: #ffffff;
+}
+.button-no:hover {
+    background-color: #c64f4f;
+}
+.button-yes {
+    background-color: #66cc66;
+    color: #ffffff;
+}
