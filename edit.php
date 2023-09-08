@@ -89,6 +89,7 @@ else{
     </style>
 </head>
 <body>
+
     <div class="edit-container">
         <h1>Edit Details</h1>
         <form method="POST">
@@ -112,13 +113,30 @@ else{
                 <input type="text" id="address" name="address" value="<?= $contact['address']; ?>">
             </div>
             <div class="button-container">
-                <button class="button button-save" type="submit">Save</button>
+                <button class="button button-save" type="submit" name="save" onclick="window.location.href='home.php'">Save</button>
                 <button class="button button-cancel" type="button" onclick="window.location.href='home.php'">Cancel</button>
             </div>
             <?php endif; ?>
         </form>
     </div>
-    
+
+    <!-- Update section -->
+
+    <?php 
+if(!empty($contact)) {
+    if(isset($_POST['save'])) {
+
+        $name=$_POST['name'];
+        $email=$_POST['email'];
+        $phone=$_POST['number'];
+        $address=$_POST['address'];
+
+        $sql = "UPDATE contacts SET name='$name',email='$email', phone='$phone', address='$address' WHERE id =".$_GET['id'];
+        $result = mysqli_query($conn, $sql);
+    }
+}
+?>
+
 </body>
 </html>
 
