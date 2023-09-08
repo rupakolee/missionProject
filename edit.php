@@ -42,7 +42,7 @@ else{
                 <input type="text" id="address" name="address" value="<?= $contact['address']; ?>">
             </div>
             <div class="button-container">
-                <button class="button button-save" type="submit" name="save" onclick="window.location.href='home.php'">Save</button>
+                <button class="button button-save" type="submit" name="save">Save</button>
                 <button class="button button-cancel" type="button" onclick="window.location.href='home.php'">Cancel</button>
             </div>
             <?php endif; ?>
@@ -62,6 +62,8 @@ if(!empty($contact)) {
 
         $sql = "UPDATE contacts SET name='$name',email='$email', phone='$phone', address='$address' WHERE id =".$_GET['id'];
         $result = mysqli_query($conn, $sql);
+        if($result)
+        header("Location: home.php");
     }
 }
 ?>
